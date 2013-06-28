@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>pullRequestManager - pullRequestManager</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../pullRequestManager/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../../pullRequestManager/readme.html">readme</a>
+  
+    <li class="file"><a href="../../pullRequestManager/scripts/pullRequestManager.html">pullRequestManager</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../GitMan.html">GitMan</a>
+  
+    <li><a href="../../Object.html">Object</a>
+  
+    <li><a href="../../PostProcess.html">PostProcess</a>
+  
+    <li><a href="../../PullReqMan.html">PullReqMan</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<p>#!/bin/bash # # chkconfig: 345 99 05 # description: Java deamon script # #
+A non-SUSE Linux start/stop script for Java daemons. # # Derived from - #
+Home page: <a href="http://www.source-code.biz">www.source-code.biz</a> #
+License:   GNU/LGPL (<a
+href="http://www.gnu.org/licenses/lgpl.html">www.gnu.org/licenses/lgpl.html</a>)
+# Copyright 2006 Christian d’Heureuse, Inventec Informatik AG, Switzerland.
+# # History: # 2010-09-21 Josh Davis: Changed ‘sudo’ to ‘su’, fix some
+typos, removed unused variables # 2009-03-04 Josh Davis: Ubuntu/Redhat
+version. # 2006-06-27 Christian d’Heureuse: Script created. # 2006-07-02
+chdh: Minor improvements. # 2006-07-10 chdh: Changes for SUSE 10.0.</p>
+
+<p># Set this to your Java installation JAVA_HOME=/usr</p>
+
+<p>serviceNameLo=“pullRequestManager”                                  #
+service name with the first letter in lowercase
+serviceName=“Pull-Request-Manager”                                    #
+service name serviceUser=“pullRman”                                      #
+OS user name for the service serviceGroup=“pullRman”                       
+# OS group name for the service applDir=“/var/lib/$serviceNameLo”          
+# home directory of the service application
+serviceUserHome=“/home/$serviceUser”                       # home directory
+of the service user serviceLogFile=“/var/log/$serviceNameLo.log”           
+# log file for StdOut/StdErr maxShutdownTime=15                            
+# maximum number of seconds to wait for the daemon to terminate normally
+pidFile=“/var/run/$serviceNameLo.pid”                      # name of PID
+file (PID = process ID number) javaCommand=“java”                          
+# name of the Java launcher without the path
+javaExe=“$JAVA_HOME/bin/$javaCommand”                      # file name of
+the Java application launcher executable
+javaArgs=“-Djruby.compat.version=RUBY1_9 -jar
+$applDir/pullRequestManager.jar”                     # arguments for Java
+launcher javaCommandLine=“$javaExe $javaArgs”                       #
+command line to start the Java service application
+javaCommandLineKeyword=“pullRequestManager.jar”                     # a
+keyword that occurs on the commandline, used to detect an already running
+service process and to distinguish it from others</p>
+
+<p># Makes the file $1 writable by the group $serviceGroup. function
+makeFileWritable {</p>
+
+<pre>local filename=&quot;$1&quot;
+touch $filename || return 1
+chgrp $serviceGroup $filename || return 1
+chmod g+w $filename || return 1
+return 0; }</pre>
+
+<p># Returns 0 if the process with PID $1 is running. function
+checkProcessIsRunning {</p>
+
+<pre>local pid=&quot;$1&quot;
+if [ -z &quot;$pid&quot; -o &quot;$pid&quot; == &quot; &quot; ]; then return 1; fi
+if [ ! -e /proc/$pid ]; then return 1; fi
+return 0; }</pre>
+
+<p># Returns 0 if the process with PID $1 is our Java service process.
+function checkProcessIsOurService {</p>
+
+<pre>local pid=&quot;$1&quot;
+if [ &quot;$(ps -p $pid --no-headers -o comm)&quot; != &quot;$javaCommand&quot; ]; then return 1; fi
+grep -q --binary -F &quot;$javaCommandLineKeyword&quot; /proc/$pid/cmdline
+if [ $? -ne 0 ]; then return 1; fi
+return 0; }</pre>
+
+<p># Returns 0 when the service is running and sets the variable $pid to the
+PID. function getServicePID {</p>
+
+<pre>if [ ! -f $pidFile ]; then return 1; fi
+pid=&quot;$(&lt;$pidFile)&quot;
+checkProcessIsRunning $pid || return 1
+checkProcessIsOurService $pid || return 1
+return 0; }</pre>
+
+<p>function startServiceProcess {</p>
+
+<pre>cd $applDir || return 1
+rm -f $pidFile
+makeFileWritable $pidFile || return 1
+makeFileWritable $serviceLogFile || return 1
+cmd=&quot;nohup $javaCommandLine &gt;&gt;$serviceLogFile 2&gt;&amp;1 &amp; echo \$! &gt;$pidFile&quot;
+su -m $serviceUser -s $SHELL -c &quot;$cmd&quot; || return 1
+sleep 0.1
+pid=&quot;$(&lt;$pidFile)&quot;
+if checkProcessIsRunning $pid; then :; else
+   echo -ne &quot;\n$serviceName start failed, see logfile.&quot;
+   return 1
+fi
+return 0; }</pre>
+
+<p>function stopServiceProcess {</p>
+
+<pre>kill $pid || return 1
+for ((i=0; i&lt;maxShutdownTime*10; i++)); do
+   checkProcessIsRunning $pid
+   if [ $? -ne 0 ]; then
+      rm -f $pidFile
+      return 0
+      fi
+   sleep 0.1
+   done
+echo -e &quot;\n$serviceName did not terminate within $maxShutdownTime seconds, sending SIGKILL...&quot;
+kill -s KILL $pid || return 1
+local killWaitTime=15
+for ((i=0; i&lt;killWaitTime*10; i++)); do
+   checkProcessIsRunning $pid
+   if [ $? -ne 0 ]; then
+      rm -f $pidFile
+      return 0
+      fi
+   sleep 0.1
+   done
+echo &quot;Error: $serviceName could not be stopped within $maxShutdownTime+$killWaitTime seconds!&quot;
+return 1; }</pre>
+
+<p>function startService {</p>
+
+<pre>getServicePID
+if [ $? -eq 0 ]; then echo -n &quot;$serviceName is already running&quot;; RETVAL=0; return 0; fi
+echo -n &quot;Starting $serviceName   &quot;
+startServiceProcess
+if [ $? -ne 0 ]; then RETVAL=1; echo &quot;failed&quot;; return 1; fi
+echo &quot;started PID=$pid&quot;
+RETVAL=0
+return 0; }</pre>
+
+<p>function stopService {</p>
+
+<pre>getServicePID
+if [ $? -ne 0 ]; then echo -n &quot;$serviceName is not running&quot;; RETVAL=0; echo &quot;&quot;; return 0; fi
+echo -n &quot;Stopping $serviceName   &quot;
+stopServiceProcess
+if [ $? -ne 0 ]; then RETVAL=1; echo &quot;failed&quot;; return 1; fi
+echo &quot;stopped PID=$pid&quot;
+RETVAL=0
+return 0; }</pre>
+
+<p>function checkServiceStatus {</p>
+
+<pre>echo -n &quot;Checking for $serviceName:   &quot;
+if getServicePID; then
+ echo &quot;running PID=$pid&quot;
+ RETVAL=0
+else
+ echo &quot;stopped&quot;
+ RETVAL=3
+fi
+return 0; }</pre>
+
+<p>function main {</p>
+
+<pre>RETVAL=0
+case &quot;$1&quot; in
+   start)                                               # starts the Java program as a Linux service
+      startService
+      ;;
+   stop)                                                # stops the Java program service
+      stopService
+      ;;
+   restart)                                             # stops and restarts the service
+      stopService &amp;&amp; startService
+      ;;
+   status)                                              # displays the service status
+      checkServiceStatus
+      ;;
+   *)
+      echo &quot;Usage: $0 {start|stop|restart|status}&quot;
+      exit 1
+      ;;
+   esac
+exit $RETVAL</pre>
+
+<p>}</p>
+
+<p>main $1</p>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

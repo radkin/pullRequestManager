@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Object - pullRequestManager</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>pullRequestManager/bin/pullRequestManager.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">BasicObject
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-main">#main</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./pullRequestManager/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./pullRequestManager/readme.html">readme</a>
+  
+    <li class="file"><a href="./pullRequestManager/scripts/pullRequestManager.html">pullRequestManager</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./GitMan.html">GitMan</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PostProcess.html">PostProcess</a>
+  
+    <li><a href="./PullReqMan.html">PullReqMan</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Object</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="BASEDIR">BASEDIR
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-main" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>instantiate each pullRequestManager object and it’s thread starts
+immediately after.  eventually, we can use the parent to do things like
+kill off threads and re-instantiate to clear cached values, etc.</p>
+          
+
+          
+          <div class="method-source-code" id="main-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/bin/pullRequestManager.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main</span>()
+  <span class="ruby-comment"># for the stooges/larry folks and their junit tests</span>
+  <span class="ruby-identifier">owner</span>             = <span class="ruby-string">&quot;stooges&quot;</span>
+  <span class="ruby-identifier">repo</span>              = <span class="ruby-string">&quot;larry&quot;</span>
+  <span class="ruby-identifier">jenkinsJob</span>        = <span class="ruby-string">&quot;larry_Pull_Request&quot;</span>
+  <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Starting #{owner}/#{repo} for #{jenkinsJob} thread&quot;</span>)
+  <span class="ruby-identifier">stoogesLarryJunit</span> = <span class="ruby-constant">PullReqMan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">repo</span>, <span class="ruby-identifier">jenkinsJob</span>)
+  <span class="ruby-identifier">stoogesLarryJunit</span>.<span class="ruby-identifier">go</span>
+  <span class="ruby-comment"># stagger our threads so they aren't working spamming our resources</span>
+  <span class="ruby-identifier">sleep</span> <span class="ruby-value">15</span>
+  <span class="ruby-comment"># for the stooges/moe folks and their junit tests</span>
+  <span class="ruby-identifier">owner</span>             = <span class="ruby-string">&quot;stooges&quot;</span>
+  <span class="ruby-identifier">repo</span>              = <span class="ruby-string">&quot;moe&quot;</span>
+  <span class="ruby-identifier">jenkinsJob</span>        = <span class="ruby-string">&quot;moe_Pull_Request&quot;</span>
+  <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Starting #{owner}/#{repo} for #{jenkinsJob} thread&quot;</span>)
+  <span class="ruby-identifier">stoogesMoeJunit</span> = <span class="ruby-constant">PullReqMan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">repo</span>, <span class="ruby-identifier">jenkinsJob</span>)
+  <span class="ruby-identifier">stoogesMoeJunit</span>.<span class="ruby-identifier">go</span>
+  <span class="ruby-comment"># stagger our threads so they aren't working spamming our resources</span>
+  <span class="ruby-identifier">sleep</span> <span class="ruby-value">15</span>
+  <span class="ruby-comment"># for the stooges/curly folks and their build</span>
+  <span class="ruby-identifier">owner</span>             = <span class="ruby-string">&quot;stooges&quot;</span>
+  <span class="ruby-identifier">repo</span>              = <span class="ruby-string">&quot;curly&quot;</span>
+  <span class="ruby-identifier">jenkinsJob</span>        = <span class="ruby-string">&quot;curly_Pull_Request&quot;</span>
+  <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Starting #{owner}/#{repo} for #{jenkinsJob} thread&quot;</span>)
+  <span class="ruby-identifier">stoogesCurlyJunit</span> = <span class="ruby-constant">PullReqMan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">repo</span>, <span class="ruby-identifier">jenkinsJob</span>)
+  <span class="ruby-identifier">stoogesCurlyJunit</span>.<span class="ruby-identifier">go</span>
+  <span class="ruby-comment"># stagger our threads so they aren't working spamming our resources</span>
+  <span class="ruby-identifier">alive</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">alive</span>
+    <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;Keeping our parent alive so the threads dont die. Sleeping for 3 minutes&quot;</span>)
+    <span class="ruby-identifier">sleep</span> <span class="ruby-value">180</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

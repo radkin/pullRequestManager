@@ -1,0 +1,87 @@
+pullRequestManager
+
+Trigger a jenkins job when there is a pull request in github
+the jenkins params keep a record of the git pull request URL
+and github has a record of the triggered build
+
+Author::    Noel Miller (mailto:noel@flurry.com)
+Copyright:: Copyright (c) 2013 Flurry, Inc.
+----------------------------------------------------------------------------------------------------
+
+*** jgem requirements: (see Gemfile for version detail)
+logger 
+github_api
+jruby-openssl
+json
+xml-simple
+certified
+bundler
+warbler
+
+----------------------------------------------------------------------------------------------------
+
+1. How to generate .jar
+
+make sure the Gemfile has all your gems
+make sure you have a require for all required gems
+
+sudo jruby -S gem install [required-gem]
+jruby -S bundle install
+jruby /usr/local/bin/warble
+
+2. Generate doc
+cd ../
+rdoc -t pullRequestManager -d pullRequestManager
+mv doc pullRequestManager
+
+3. Startup script is "scripts/pullRequestManager"
+
+4. Installation instructions
+[on the server running pullRequestManager]
+
+mkdir /var/lib/pullRequestManager
+cp pullRequestManager /etc/init.d/
+chmod 755 /etc/init.d/pullRequestManager
+
+[set JAVA_HOME if it lives elsewhere]
+vi /etc/init.d/pullRequestManager
+
+cp pullRequestManager.jar /var/lib/pullRequestManager/
+chmod 755 -R /var/lib/pullRequestManager
+/sbin/chkconfig --add pullRequestManager 
+/sbin/chkconfig on pullRequestManager
+service pullRequestManager start
+tail -f /var/log/pullRequestManager.log
+
+5. To test the jar prior to deployment. Run this command
+/usr/bin/java -Djruby.compat.version=RUBY1_9 -jar /var/lib/pullRequestManager/pullRequestManager.jar
+
+6. pullRequestManager has been tested with jruby 1.7.0.preview1 (ruby-1.9.3-p203)
+
+----------------------------------------------------------------------------------------------------
+***           quick start wiki ***
+
+1. Install jruby 1.7.x, download here: http://www.jruby.org/download
+
+2. Install rubygems http://rubygems.org/pages/download 
+Make sure to use jruby ./setup.rb
+
+3. Install required jgems (see top of this document)
+sudo jruby -S jgem install [required-gem]
+
+4. git clone git@git.com:flurry/pullRequestManager.git
+
+5. vim bin/pullRequestManager.rb
+Edit the "few globals" section to suit your environment and needs
+Edit the sample owner/repo/JenkinsJob combos to suit your environment and needs
+
+6. Add the following text fields to the beginning of your Jenkins job "params"
+"branch", "committer", "comments", "email"
+It is very important that it be in that order, at the beginning of the params, and complete. 
+You can put other things after that first batch of fields.
+
+7. Add users/passes that correspond to your "few globals" settings as needed to bin/pullRequestManager.rb
+
+8. Optionally- test it ./bin/pullRequestManager 
+
+9. follow instructions "How to generate .jar" and then "Installation instructions"

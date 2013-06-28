@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class GitMan - pullRequestManager</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>pullRequestManager/lib/GitMan.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-conn">#conn</a>
+    
+    <li><a href="#method-i-gatherUserData">#gatherUserData</a>
+    
+    <li><a href="#method-i-listPulls">#listPulls</a>
+    
+    <li><a href="#method-i-postComment">#postComment</a>
+    
+    <li><a href="#method-i-postRepoStatus">#postRepoStatus</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./pullRequestManager/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./pullRequestManager/readme.html">readme</a>
+  
+    <li class="file"><a href="./pullRequestManager/scripts/pullRequestManager.html">pullRequestManager</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./GitMan.html">GitMan</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PostProcess.html">PostProcess</a>
+  
+    <li><a href="./PullReqMan.html">PullReqMan</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class GitMan</h1>
+
+  <div id="description" class="description">
+    
+<p>git management class. We do everything that is related to github here</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-branch" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">branch</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-committer" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">committer</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-issue_id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">issue_id</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-jenkinsStatus" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">jenkinsStatus</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-jenkinsURL" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">jenkinsURL</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(owner, repo)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>the only thing we know we need, owner and repo. All other info gathered
+with attr_accessors above</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">repo</span>)
+  <span class="ruby-ivar">@owner</span>        = <span class="ruby-identifier">owner</span>
+  <span class="ruby-ivar">@repo</span>         = <span class="ruby-identifier">repo</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-conn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">conn</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>a wrapper for connections. Instantiate this and do everything you need
+after</p>
+          
+
+          
+          <div class="method-source-code" id="conn-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">conn</span>
+  <span class="ruby-keyword">begin</span>
+  <span class="ruby-ivar">@github</span> = <span class="ruby-constant">Github</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">config</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">endpoint</span>     = <span class="ruby-node">&quot;https://#{$gitServer}/api/v3&quot;</span>
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">basic_auth</span>   = <span class="ruby-node">&quot;#{$gitUser}:#{$gitPass}&quot;</span>
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">adapter</span>      = <span class="ruby-value">:net_http</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">$LOG</span>.<span class="ruby-identifier">error</span>(<span class="ruby-string">&quot;Retrying in 5 minutes&quot;</span>)
+    <span class="ruby-identifier">sleep</span> <span class="ruby-value">300</span>
+    <span class="ruby-keyword">retry</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- conn-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- conn-method -->
+
+    
+      <div id="method-i-gatherUserData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gatherUserData</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>you cannot the users email address from pull requests one must reference
+user profile data</p>
+          
+
+          
+          <div class="method-source-code" id="gatherUserData-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">gatherUserData</span>
+  <span class="ruby-identifier">userProfile</span> = <span class="ruby-ivar">@github</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">get</span> <span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@committer</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">userProfile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- gatherUserData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- gatherUserData-method -->
+
+    
+      <div id="method-i-listPulls" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">listPulls</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>this is how we get our pull objects</p>
+          
+
+          
+          <div class="method-source-code" id="listPulls-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">listPulls</span>
+  <span class="ruby-identifier">resPull</span>   = <span class="ruby-ivar">@github</span>.<span class="ruby-identifier">pull_requests</span>.<span class="ruby-identifier">list</span> <span class="ruby-ivar">@owner</span>, <span class="ruby-ivar">@repo</span>, <span class="ruby-value">:mime_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:full</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">resPull</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- listPulls-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- listPulls-method -->
+
+    
+      <div id="method-i-postComment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">postComment</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>does just what it says. Uses github_api to post to and issue, which in
+github-land is a comment in the pull-request</p>
+          
+
+          
+          <div class="method-source-code" id="postComment-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">postComment</span>
+  <span class="ruby-ivar">@github</span>.<span class="ruby-identifier">issues</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">create</span> <span class="ruby-ivar">@owner</span>, <span class="ruby-ivar">@repo</span>, <span class="ruby-ivar">@issue_id</span>,
+    <span class="ruby-string">&quot;body&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;Triggering build on branch #{@branch} for user #{@committer}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- postComment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- postComment-method -->
+
+    
+      <div id="method-i-postRepoStatus" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">postRepoStatus</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>does just what it says. Uses github_api to post to and issue, which in
+github-land is a comment in the pull-request</p>
+          
+
+          
+          <div class="method-source-code" id="postRepoStatus-source">
+            <pre><span class="ruby-comment"># File pullRequestManager/lib/GitMan.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">postRepoStatus</span>
+  <span class="ruby-ivar">@github</span>.<span class="ruby-identifier">repos</span>.<span class="ruby-identifier">statuses</span>.<span class="ruby-identifier">create</span> <span class="ruby-ivar">@owner</span>, <span class="ruby-ivar">@repo</span>, <span class="ruby-ivar">@issue_id</span>,
+    <span class="ruby-string">&quot;state&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@jenkinsStatus}&quot;</span>,
+    <span class="ruby-string">&quot;target_url&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@jenkinsURL}&quot;</span>,
+    <span class="ruby-string">&quot;description&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Jenkins job status&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- postRepoStatus-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- postRepoStatus-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>readme - pullRequestManager</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../pullRequestManager/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../pullRequestManager/readme.html">readme</a>
+  
+    <li class="file"><a href="../pullRequestManager/scripts/pullRequestManager.html">pullRequestManager</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../GitMan.html">GitMan</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../PostProcess.html">PostProcess</a>
+  
+    <li><a href="../PullReqMan.html">PullReqMan</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<p>pullRequestManager</p>
+
+<p>Trigger a jenkins job when there is a pull request in github the jenkins
+params keep a record of the git pull request URL and github has a record of
+the triggered build</p>
+<dl class="rdoc-list note-list"><dt>Author
+<dd>
+<p>Noel Miller (<a href="mailto:noel@flurry.com">noel@flurry.com</a>)</p>
+</dd><dt>Copyright
+<dd>
+<p>Copyright © 2013 Flurry, Inc.</p>
+</dd></dl>
+<hr style="height: 10px">
+
+<p>*** jgem requirements: (see <a href="Gemfile.html">Gemfile</a> for version
+detail) logger  github_api jruby-openssl json xml-simple certified bundler
+warbler</p>
+<hr style="height: 10px">
+<ol><li>
+<p>How to generate .jar</p>
+</li></ol>
+
+<p>make sure the <a href="Gemfile.html">Gemfile</a> has all your gems make
+sure you have a require for all required gems</p>
+
+<p>sudo jruby -S gem install [required-gem] jruby -S bundle install jruby
+/usr/local/bin/warble</p>
+<ol><li>
+<p>Generate doc</p>
+</li></ol>
+
+<p>cd ../ rdoc -t pullRequestManager -d pullRequestManager mv doc
+pullRequestManager</p>
+<ol><li>
+<p>Startup script is “scripts/pullRequestManager”</p>
+</li><li>
+<p>Installation instructions</p>
+</li></ol>
+<dl class="rdoc-list label-list"><dt>on the server running pullRequestManager
+<dd>
+<p>mkdir /var/lib/pullRequestManager cp pullRequestManager /etc/init.d/ chmod
+755 /etc/init.d/pullRequestManager</p>
+<dl class="rdoc-list label-list"><dt>set JAVA_HOME if it lives elsewhere
+<dd>
+<p>vi /etc/init.d/pullRequestManager</p>
+
+<p>cp pullRequestManager.jar /var/lib/pullRequestManager/ chmod 755 -R
+/var/lib/pullRequestManager /sbin/chkconfig –add pullRequestManager 
+/sbin/chkconfig on pullRequestManager service pullRequestManager start tail
+-f /var/log/pullRequestManager.log</p>
+<ol><li>
+<p>To test the jar prior to deployment. Run this command</p>
+</li></ol>
+
+<p>/usr/bin/java -Djruby.compat.version=RUBY1_9 -jar
+/var/lib/pullRequestManager/pullRequestManager.jar</p>
+<ol><li>
+<p>pullRequestManager has been tested with jruby 1.7.0.preview1
+(ruby-1.9.3-p203)</p>
+</li></ol>
+<hr style="height: 10px">
+
+<p>***           quick start wiki ***</p>
+<ol><li>
+<p>Install jruby 1.7.x, download here: <a
+href="http://www.jruby.org/download">www.jruby.org/download</a></p>
+</li><li>
+<p>Install rubygems <a
+href="http://rubygems.org/pages/download">rubygems.org/pages/download</a></p>
+</li></ol>
+
+<p>Make sure to use jruby ./setup.rb</p>
+<ol><li>
+<p>Install required jgems (see top of this document)</p>
+</li></ol>
+
+<p>sudo jruby -S jgem install [required-gem]</p>
+<ol><li>
+<p>git clone git@git.com:flurry/pullRequestManager.git</p>
+</li><li>
+<p>vim bin/pullRequestManager.rb</p>
+</li></ol>
+
+<p>Edit the “few globals” section to suit your environment and needs Edit the
+sample owner/repo/JenkinsJob combos to suit your environment and needs</p>
+<ol><li>
+<p>Add the following text fields to the beginning of your Jenkins job “params”</p>
+</li></ol>
+
+<p>“branch”, “committer”, “comments”, “email” It is very important that it be
+in that order, at the beginning of the params, and complete.  You can put
+other things after that first batch of fields.</p>
+<ol><li>
+<p>Add users/passes that correspond to your “few globals” settings as needed</p>
+</li><li>
+<p>Optionally- test it ./bin/pullRequestManager</p>
+</li><li>
+<p>follow Installation instructions above</p>
+</li></ol>
+</dd></dl>
+</dd></dl>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
