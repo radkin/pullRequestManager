@@ -1,4 +1,4 @@
-#!/usr/bin/ruby 
+#!/usr/bin/jruby 
 
 # pullRequestManager 
 # trigger a jenkins job when there is a pull request in github

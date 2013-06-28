@@ -1,4 +1,5 @@
 pullRequestManager
+=====
 
 Trigger a jenkins job when there is a pull request in github
 the jenkins params keep a record of the git pull request URL
@@ -6,7 +7,7 @@ and github has a record of the triggered build
 
 Author::    Noel Miller (mailto:noel@flurry.com)
 Copyright:: Copyright (c) 2013 Flurry, Inc.
-----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------
 
 *** jgem requirements: (see Gemfile for version detail)
 logger 
@@ -18,7 +19,7 @@ certified
 bundler
 warbler
 
-----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------
 
 1. How to generate .jar
 
@@ -60,6 +61,7 @@ tail -f /var/log/pullRequestManager.log
 
 ----------------------------------------------------------------------------------------------------
 ***           quick start wiki ***
+====
 
 1. Install jruby 1.7.x, download here: http://www.jruby.org/download
 
